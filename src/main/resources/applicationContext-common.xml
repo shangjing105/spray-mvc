@@ -5,11 +5,13 @@
 
     <context:property-placeholder location="classpath:*.properties"/>
 
+    <!--扫包-->
+    <context:component-scan base-package="com.shang.spray">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
     <!-- 开启事务注解 -->
     <tx:annotation-driven/>
-    <context:component-scan base-package="com.spary">
-        <context:exclude-filter type="annotation" expression="org.springframework.web.bind.annotation.RestController"/>
-    </context:component-scan>
 
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <property name="defaultEncoding" value="utf-8"></property>

@@ -10,5 +10,9 @@
 		<setting name="defaultExecutorType" value="SIMPLE" />
 		<setting name="defaultStatementTimeout" value="25000" />
 	</settings>
+
+	<mappers>
+	</mappers>
+
 </configuration>
 

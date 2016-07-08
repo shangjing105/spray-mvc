@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:tx="http://www.springframework.org/schema/tx"
-       xsi:schemaLocation=" http://www.springframework.org/schema/tx
-		                    http://www.springframework.org/schema/tx/spring-tx-4.0.xsd http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
 
     <!-- 数据源配置, 使用 druid数据库连接池 -->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
@@ -32,6 +30,7 @@
     <!-- 以下是mybatis的配置 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="configLocation" value="classpath:mybatisMapperConfig.xml"/>
+        <property name="mapperLocations" value="classpath:com/shang/spray/modules/mapper/*.xml"/>
         <property name="dataSource" ref="dataSource"/>
         <property name="plugins">
             <array>
@@ -39,35 +38,29 @@
                     <property name="properties">
                         <value>
                             dialect=mysql
-                            reasonable=true
-                            supportMethodsArguments=true
-                            params=count=countSql
-                            autoRuntimeDialect=true
                         </value>
                     </property>
                 </bean>
+
             </array>
         </property>
     </bean>
 
     <bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.shang.spary.modules.mapper"/>
-        <property name="markerInterface" value="com.shang.spary.common.base.BaseMapper"/>
+        <property name="basePackage" value="com.shang.spray.modules.mapper"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
         <property name="properties">
             <value>
-                mappers=com.shang.spary.common.base.BaseMapper
+                mappers=com.shang.spray.common.base.BaseMapper
             </value>
         </property>
-        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 
-<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
-    <constructor-arg index="0" ref="sqlSessionFactory"/>
-</bean>
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg index="0" ref="sqlSessionFactory"/>
+    </bean>
 
-<tx:annotation-driven transaction-manager="transactionManager"/>
-
-<!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->
+    <!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
     </bean>
