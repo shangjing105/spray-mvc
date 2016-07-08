@@ -1,4 +1,4 @@
-# spray
+# spray-mvc
 项目初建
 ## 项目介绍
     springmvc项目，mvc三层架构。
