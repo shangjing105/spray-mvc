@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!--<context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">-->
+
+        <!--<plugin type="tk.mybatis.mapper.generator.MapperPlugin">-->
+            <!--<property name="mappers" value="com.hejia.alauda.v3.base.BaseMapper"/>-->
+        <!--</plugin>-->
+
+        <!--<jdbcConnection driverClass="com.mysql.jdbc.Driver"-->
+                        <!--connectionURL="jdbc:mysql://127.0.0.1:3306/group?characterEncoding=utf8"-->
+                        <!--userId="root" password="">-->
+        <!--</jdbcConnection>-->
+
+        <!--<javaModelGenerator targetPackage="com.hejia.alauda.entity" targetProject="src/main/java">-->
+        <!--</javaModelGenerator>-->
+
+        <!--<sqlMapGenerator targetPackage="com.hejia.alauda.persistence.mybatis"  targetProject="src/main/resources"/>-->
+
+        <!--<javaClientGenerator targetPackage="com.hejia.alauda.persistence.mybatis" targetProject="src/main/java" type="XMLMAPPER" />-->
+
+        <!--<table tableName="userassociated" />-->
+
+    <!--</context>-->
+
+    <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <property name="mappers" value="com.shang.spray.common.base.BaseMapper"/>
+        </plugin>
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/spray?characterEncoding=utf8"
+                        userId="root" password="">
+        </jdbcConnection>
+
+        <javaModelGenerator targetPackage="com.shang.spray.modules.entity" targetProject="src/main/java">
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="com.shang.spray.modules.mapper"  targetProject="src/main/resources"/>
+
+        <javaClientGenerator targetPackage="com.shang.spray.modules.mapper" targetProject="src/main/java" type="XMLMAPPER" />
+
+        <!--<table tableName="news" />-->
+        <!--<table tableName="user" />-->
+        <table tableName="type" />
+        <!--<table tableName="user_role" />-->
+        <!--<table tableName="beautiful" />-->
+        <!--<table tableName="permission" />-->
+        <!--<table tableName="role" />-->
+        <!--<table tableName="role_permission" />-->
+
+
+
+    </context>
+</generatorConfiguration>
