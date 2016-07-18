@@ -1,5 +1,5 @@
 # spray-mvc
-项目初建
+项目结构构建，调整
 ## 项目介绍
     springmvc项目，mvc三层架构。
     
